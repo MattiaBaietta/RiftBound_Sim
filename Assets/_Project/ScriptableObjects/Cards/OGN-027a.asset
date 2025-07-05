@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf2c7b73f38a65547898f5543a0499eb, type: 3}
+  m_Name: OGN-027a
+  m_EditorClassIdentifier: 
+  cardID: OGN-027a
+  cardName: Darius, Trifarian (alt)
+  type: UNIT
+  category: Main Deck
+  cardArt: {fileID: 21300000, guid: 41026c412ca5ca94fb0fd363f8e7cc88, type: 3}
+  cardArtThumbnail: {fileID: 21300000, guid: c3d4f7daab148df4bb068f2db8e2232d, type: 3}
+  energyCost: 0
+  might: 0
+  maximumCopies: 3
+  rulesText: When you play your second card in a turn, give me +2 S this turn and
+    ready me.
+  domains:
+  - Fury
+  keywords: []
+  tags:
+  - Trifarian
+  - Darius
+  isChampion: 1
+  isSignature: 0

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf2c7b73f38a65547898f5543a0499eb, type: 3}
+  m_Name: OGN-147
+  m_EditorClassIdentifier: 
+  cardID: OGN-147
+  cardName: Wildclaw Shaman
+  type: UNIT
+  category: Main Deck
+  cardArt: {fileID: 21300000, guid: e877950028abe494a92d088d9e37a8f2, type: 3}
+  cardArtThumbnail: {fileID: 21300000, guid: fe04ec8bf71d7e141961374bc9e7121f, type: 3}
+  energyCost: 0
+  might: 0
+  maximumCopies: 3
+  rulesText: When you play me, you may spend a buff to buff me and ready me. If I
+    don't have a buff, I get a +1 S buff.
+  domains:
+  - Body
+  keywords: []
+  tags: []
+  isChampion: 0
+  isSignature: 0

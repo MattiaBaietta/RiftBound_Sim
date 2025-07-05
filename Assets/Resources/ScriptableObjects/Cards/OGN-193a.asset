@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf2c7b73f38a65547898f5543a0499eb, type: 3}
+  m_Name: OGN-193a
+  m_EditorClassIdentifier: 
+  cardID: OGN-193a
+  cardName: Miss Fortune, Buccaneer (alt)
+  type: UNIT
+  category: Main Deck
+  cardArt: {fileID: 21300000, guid: 08118b36048e0a94c90287a13a0bf589, type: 3}
+  cardArtThumbnail: {fileID: 21300000, guid: aad7429815c98af48b05af00265ddfd1, type: 3}
+  energyCost: 0
+  might: 0
+  maximumCopies: 3
+  rulesText: "You may play me to an open battlefield. \n Friendly units may be played
+    to open battlefields."
+  domains:
+  - Chaos
+  keywords: []
+  tags:
+  - Pirate
+  - Miss Fortune
+  isChampion: 1
+  isSignature: 0

@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf2c7b73f38a65547898f5543a0499eb, type: 3}
+  m_Name: OGN-238a
+  m_EditorClassIdentifier: 
+  cardID: OGN-238a
+  cardName: Leona, Determined (alt)
+  type: UNIT
+  category: Main Deck
+  cardArt: {fileID: 21300000, guid: 8e0665a0a635907488ecf2270b5043cb, type: 3}
+  cardArtThumbnail: {fileID: 21300000, guid: 80bcbb9cd699708428d4c75e54c3cf41, type: 3}
+  energyCost: 0
+  might: 0
+  maximumCopies: 3
+  rulesText: "Shield +1 S while I'm a defender.\n When I attack, stun an enemy unit
+    here. It doesn't deal combat damage this turn."
+  domains:
+  - Order
+  keywords:
+  - Shield
+  tags:
+  - Leona
+  isChampion: 1
+  isSignature: 0

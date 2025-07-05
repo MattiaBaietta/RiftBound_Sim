@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf2c7b73f38a65547898f5543a0499eb, type: 3}
+  m_Name: OGN-110
+  m_EditorClassIdentifier: 
+  cardID: OGN-110
+  cardName: Ekko, Recurrent
+  type: UNIT
+  category: Main Deck
+  cardArt: {fileID: 21300000, guid: cffe96cb416d8594a884fa29ad50e7ab, type: 3}
+  cardArtThumbnail: {fileID: 21300000, guid: 99952efda7cd7eb4fb52cba66cfdb48b, type: 3}
+  energyCost: 0
+  might: 0
+  maximumCopies: 3
+  rulesText: "Accelerate You may pay 1C as an additional cost to have me enter ready.\n
+    Deathknell: Recycle me to ready your runes. When I die, get the effect."
+  domains:
+  - Mind
+  keywords:
+  - Accelerate
+  - Deathknell
+  tags:
+  - Ekko
+  isChampion: 1
+  isSignature: 0

@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf2c7b73f38a65547898f5543a0499eb, type: 3}
+  m_Name: OGN-078
+  m_EditorClassIdentifier: 
+  cardID: OGN-078
+  cardName: Lee Sin, Ascetic
+  type: UNIT
+  category: Main Deck
+  cardArt: {fileID: 21300000, guid: 1a2e0727c39091d4294fd31cb679ab3a, type: 3}
+  cardArtThumbnail: {fileID: 21300000, guid: 509682425948c9d4e8727445a14e9cb8, type: 3}
+  energyCost: 0
+  might: 0
+  maximumCopies: 3
+  rulesText: "Shield +1 S while I'm a defender.\n T: Buff me. I get a +1 S buff.\n
+    I can have any number of buffs."
+  domains:
+  - Calm
+  keywords:
+  - Shield
+  tags:
+  - Lee Sin
+  isChampion: 1
+  isSignature: 0

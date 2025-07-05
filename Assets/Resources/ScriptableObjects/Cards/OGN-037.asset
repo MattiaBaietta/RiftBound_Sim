@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf2c7b73f38a65547898f5543a0499eb, type: 3}
+  m_Name: OGN-037
+  m_EditorClassIdentifier: 
+  cardID: OGN-037
+  cardName: Immortal Phoenix
+  type: UNIT
+  category: Main Deck
+  cardArt: {fileID: 21300000, guid: 3328022fe5de4d742bc33e9d5803cf41, type: 3}
+  cardArtThumbnail: {fileID: 21300000, guid: 87af3488676520847b217721d956744a, type: 3}
+  energyCost: 0
+  might: 0
+  maximumCopies: 3
+  rulesText: Assault 2 +2 S while I'm an attacker. When you kill a unit with a spell,
+    you may pay 1C to play me from your trash.
+  domains:
+  - Fury
+  keywords:
+  - Assault
+  tags:
+  - Spirit
+  isChampion: 0
+  isSignature: 0

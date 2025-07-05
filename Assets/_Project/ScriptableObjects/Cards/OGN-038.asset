@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf2c7b73f38a65547898f5543a0499eb, type: 3}
+  m_Name: OGN-038
+  m_EditorClassIdentifier: 
+  cardID: OGN-038
+  cardName: Kadregrin the Infernal
+  type: UNIT
+  category: Main Deck
+  cardArt: {fileID: 21300000, guid: 69473876a7f6a914a82055cfb0bf1909, type: 3}
+  cardArtThumbnail: {fileID: 21300000, guid: 0a85ff542b6471445b3ead1afd3259be, type: 3}
+  energyCost: 9
+  might: 9
+  maximumCopies: 3
+  rulesText: When you play me, draw 1 for each of your Mighty units. A unit is Mighty
+    while it has 5+ S.
+  domains:
+  - Fury
+  keywords: []
+  tags:
+  - Dragon
+  isChampion: 0
+  isSignature: 0

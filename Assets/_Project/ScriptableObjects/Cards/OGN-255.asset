@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf2c7b73f38a65547898f5543a0499eb, type: 3}
+  m_Name: OGN-255
+  m_EditorClassIdentifier: 
+  cardID: OGN-255
+  cardName: Nine-Tailed Fox
+  type: LEGEND
+  category: Non-Deck
+  cardArt: {fileID: 21300000, guid: 9abd4603dd505c24686f0485a3be742c, type: 3}
+  cardArtThumbnail: {fileID: 21300000, guid: 8e0d33cb5ca73004ea975ba336c17ebe, type: 3}
+  energyCost: 0
+  might: 0
+  maximumCopies: 3
+  rulesText: When an enemy unit attacks a battlefield you control, give it -1 S this
+    turn, to a minimum of 1 S.
+  domains:
+  - Calm
+  - Mind
+  keywords: []
+  tags:
+  - Ahri
+  isChampion: 1
+  isSignature: 0

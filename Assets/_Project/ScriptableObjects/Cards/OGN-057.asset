@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf2c7b73f38a65547898f5543a0499eb, type: 3}
+  m_Name: OGN-057
+  m_EditorClassIdentifier: 
+  cardID: OGN-057
+  cardName: Block
+  type: SPELL
+  category: Main Deck
+  cardArt: {fileID: 21300000, guid: 344a848300af3484f95af277fe731eb8, type: 3}
+  cardArtThumbnail: {fileID: 21300000, guid: 9cab7c095d33f4f4dae77eb2d4643a50, type: 3}
+  energyCost: 0
+  might: 0
+  maximumCopies: 3
+  rulesText: "Hidden Hide now for A to react with later for 0.\n Action Play on your
+    turn or in showdowns.\n Give a unit Shield 3 and Tank this turn. +3 S while it's
+    a defender. It must be assigned combat damage first."
+  domains:
+  - Calm
+  keywords:
+  - Action
+  - Hidden
+  - Shield
+  - Tank
+  tags: []
+  isChampion: 0
+  isSignature: 0

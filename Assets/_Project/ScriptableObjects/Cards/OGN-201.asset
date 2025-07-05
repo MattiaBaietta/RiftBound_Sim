@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf2c7b73f38a65547898f5543a0499eb, type: 3}
+  m_Name: OGN-201
+  m_EditorClassIdentifier: 
+  cardID: OGN-201
+  cardName: Invert Timelines
+  type: SPELL
+  category: Main Deck
+  cardArt: {fileID: 21300000, guid: de5af3aea6a541e42924936f1aad82be, type: 3}
+  cardArtThumbnail: {fileID: 21300000, guid: 8f79e2a73bf10bf47b2992056cfe0e71, type: 3}
+  energyCost: 0
+  might: 0
+  maximumCopies: 3
+  rulesText: Each player discards their hand, then draws 4.
+  domains:
+  - Chaos
+  keywords: []
+  tags: []
+  isChampion: 0
+  isSignature: 0

@@ -1,0 +1,36 @@
+# =================================================================
+# File .gitignore Standard per Progetti Unity
+# Basato sul template ufficiale di GitHub
+# =================================================================
+
+# Cartelle generate da Unity che non vanno mai tracciate
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+
+# File di memoria per gli asset. Vengono rigenerati
+/[Aa]ssets/AssetStoreTools*
+
+# File di build per varie piattaforme
+*.apk
+*.aab
+*.app
+*.exe
+*.ipa
+*.unitypackage
+
+# Crash Report
+crash_reporter.cfg
+
+# File generati dagli editor di codice (Visual Studio, Rider, VS Code)
+.vs/
+.idea/
+*.sln
+*.suo
+*.csproj
+*.user
+*.userprefs

@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf2c7b73f38a65547898f5543a0499eb, type: 3}
+  m_Name: OGN-162
+  m_EditorClassIdentifier: 
+  cardID: OGN-162
+  cardName: Miss Fortune, Captain
+  type: UNIT
+  category: Main Deck
+  cardArt: {fileID: 21300000, guid: 781f4f9f69fccdd488fcf282a1059d66, type: 3}
+  cardArtThumbnail: {fileID: 21300000, guid: 97a27c140ef071743b0779fb1ef30f13, type: 3}
+  energyCost: 0
+  might: 0
+  maximumCopies: 3
+  rulesText: "Accelerate You may pay 1C as an additional cost to have me enter ready.\n
+    Ganking I can move from battlefield to battlefield.\n The first time I move each
+    turn, you may ready something else that's exhausted."
+  domains:
+  - Body
+  keywords:
+  - Accelerate
+  - Ganking
+  tags:
+  - Pirate
+  - Miss Fortune
+  isChampion: 1
+  isSignature: 0

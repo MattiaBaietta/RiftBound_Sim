@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf2c7b73f38a65547898f5543a0499eb, type: 3}
+  m_Name: OGN-157
+  m_EditorClassIdentifier: 
+  cardID: OGN-157
+  cardName: Udyr, Wildman
+  type: UNIT
+  category: Main Deck
+  cardArt: {fileID: 21300000, guid: b135c9f2b550a13429cbba8ba9b2249e, type: 3}
+  cardArtThumbnail: {fileID: 21300000, guid: 3f1d984b319c1bc4fb8597ae8ed15d9f, type: 3}
+  energyCost: 0
+  might: 0
+  maximumCopies: 3
+  rulesText: "Spend my buff: Choose one you've not chosen this turn:\n * Deal 2 to
+    a unit at a battlefield.\n * Stun a unit at a battlefield.\n * Ready me.\n *
+    Give me Ganking this turn."
+  domains:
+  - Body
+  keywords:
+  - Ganking
+  tags:
+  - Udyr
+  isChampion: 1
+  isSignature: 0

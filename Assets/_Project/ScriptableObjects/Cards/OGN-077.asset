@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf2c7b73f38a65547898f5543a0499eb, type: 3}
+  m_Name: OGN-077
+  m_EditorClassIdentifier: 
+  cardID: OGN-077
+  cardName: Zhonya's Hourglass
+  type: GEAR
+  category: Main Deck
+  cardArt: {fileID: 21300000, guid: b34efb418d95e0d408e4ae74b33dcb18, type: 3}
+  cardArtThumbnail: {fileID: 21300000, guid: 4d08f488d03e1ab49add2e3e25341edb, type: 3}
+  energyCost: 0
+  might: 0
+  maximumCopies: 3
+  rulesText: "Hidden Hide now for A to react with later for 0.\n The next time a
+    friendly unit would die, kill this instead. Recall that unit exhausted. Send
+    it to base. This isn't a move."
+  domains:
+  - Calm
+  keywords:
+  - Hidden
+  tags: []
+  isChampion: 0
+  isSignature: 0

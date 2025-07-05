@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf2c7b73f38a65547898f5543a0499eb, type: 3}
+  m_Name: OGN-020
+  m_EditorClassIdentifier: 
+  cardID: OGN-020
+  cardName: Scrapyard Champion
+  type: UNIT
+  category: Main Deck
+  cardArt: {fileID: 21300000, guid: 5bb2ad55998dcec44ad5fa9fda752289, type: 3}
+  cardArtThumbnail: {fileID: 21300000, guid: c12b2993667eb1e489234f4a493f326a, type: 3}
+  energyCost: 5
+  might: 5
+  maximumCopies: 3
+  rulesText: Legion When you play me, discard 2, then draw 2. Get the effect if you've
+    played another card this turn.
+  domains:
+  - Fury
+  keywords:
+  - Legion
+  tags:
+  - Mech
+  isChampion: 0
+  isSignature: 0

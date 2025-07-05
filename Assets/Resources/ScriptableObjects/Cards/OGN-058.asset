@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf2c7b73f38a65547898f5543a0499eb, type: 3}
+  m_Name: OGN-058
+  m_EditorClassIdentifier: 
+  cardID: OGN-058
+  cardName: Discipline
+  type: SPELL
+  category: Main Deck
+  cardArt: {fileID: 21300000, guid: d3efd436ddf9a054095086caeef8fbd5, type: 3}
+  cardArtThumbnail: {fileID: 21300000, guid: 87dc9f7c47cef72469170efe25032133, type: 3}
+  energyCost: 2
+  might: 0
+  maximumCopies: 3
+  rulesText: "Reaction Play any time, even before spells and abilities resolve.\n
+    Give a unit +2 S this turn. Draw 1."
+  domains:
+  - Calm
+  keywords:
+  - Reaction
+  tags: []
+  isChampion: 0
+  isSignature: 0

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf2c7b73f38a65547898f5543a0499eb, type: 3}
+  m_Name: OGN-152
+  m_EditorClassIdentifier: 
+  cardID: OGN-152
+  cardName: Mistfall
+  type: GEAR
+  category: Main Deck
+  cardArt: {fileID: 21300000, guid: 7b39eef0f9b44bf41b764dcec81b1aa2, type: 3}
+  cardArtThumbnail: {fileID: 21300000, guid: 44593e3f44c9c044e92d6e742e84a1f5, type: 3}
+  energyCost: 0
+  might: 0
+  maximumCopies: 3
+  rulesText: When you buff a friendly unit, you may pay C and exhaust this to ready
+    it.
+  domains:
+  - Body
+  keywords: []
+  tags: []
+  isChampion: 0
+  isSignature: 0
