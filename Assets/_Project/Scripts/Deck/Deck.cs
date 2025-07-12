@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using System.Linq;
+using System.Linq; // Necessario per funzioni come Count(), GroupBy(), Any()
 
 [CreateAssetMenu(fileName = "NewDeck", menuName = "Riftbound/Deck")]
 public class Deck : ScriptableObject
@@ -16,6 +16,7 @@ public class Deck : ScriptableObject
 
     public Deck()
     {
+        // Inizializza le liste per evitare errori
         mainDeck = new List<Card>();
         runeDeck = new List<Card>();
         battlefields = new List<Card>();
@@ -27,47 +28,65 @@ public class Deck : ScriptableObject
     /// <returns>True if the deck is valid, otherwise false.</returns>
     public bool IsValid()
     {
-        // --- Preliminary Checks ---
+        // --- Controlli Preliminari ---
         if (championLegend == null || chosenChampion == null)
         {
             Debug.LogError("VALIDATION FAILED: Champion Legend or Chosen Champion is not set.");
             return false;
         }
 
-        // --- Main Deck Rules ---
+        // --- Regole del Mazzo Principale ---
 
-        // Rule 103.2: At least 40 cards
+        // Regola 103.2: Almeno 40 carte
         if (mainDeck.Count < 40)
         {
-            Debug.LogError($"VALIDATION FAILED: Main deck has {mainDeck.Count} cards, 40 required.");
+            Debug.LogError($"VALIDATION FAILED: Main deck has {mainDeck.Count} cards, but at least 40 are required.");
             return false;
         }
 
-        // Rule 103.2.b: Check for maximum copies of each card
+        // Regola 103.2.b: Controlla le copie massime per ogni carta usando la sua proprietà
         var cardCounts = mainDeck.GroupBy(c => c.cardName);
         foreach (var group in cardCounts)
         {
-            int maxCopies = group.First().maximumCopies;
+            int maxCopies = group.First().maximumCopies; // Prende il limite dalla prima carta del gruppo
             if (group.Count() > maxCopies)
             {
-                Debug.LogError($"VALIDATION FAILED: Deck contains {group.Count()} copies of '{group.Key}', but the maximum is {maxCopies}.");
+                Debug.LogError($"VALIDATION FAILED: Deck contains {group.Count()} copies of '{group.Key}', but the maximum allowed is {maxCopies}.");
                 return false;
             }
         }
 
-        // --- Special Card Rules ---
+        // --- Regole per Carte Speciali ---
 
-        // Rule 103.2.d: Total Signature cards check
-        var signatureCards = mainDeck.Where(c => c.isSignature).ToList();
-        if (signatureCards.Count > 3)
+        // Regola 103.2.d: Massimo 3 carte "Signature" in totale
+        int signatureCardCount = mainDeck.Count(c => c.isSignature);
+        if (signatureCardCount > 3)
         {
-            Debug.LogError($"VALIDATION FAILED: Deck contains {signatureCards.Count} Signature cards, but the limit is 3.");
+            Debug.LogError($"VALIDATION FAILED: Deck contains {signatureCardCount} Signature cards, but the limit is 3.");
             return false;
         }
 
-        // --- Rune Deck Rules ---
+        // Regola 103.2.d.2: Le carte Signature devono avere il tag del Campione Scelto
+        var championTags = new HashSet<string>(chosenChampion.tags);
+        if (signatureCardCount > 0 && !championTags.Any())
+        {
+            Debug.LogWarning($"VALIDATION NOTE: Chosen Champion '{chosenChampion.cardName}' has no tags to validate Signature cards against.");
+        }
+        else
+        {
+            foreach (var signatureCard in mainDeck.Where(c => c.isSignature))
+            {
+                if (!signatureCard.tags.Any(tag => championTags.Contains(tag)))
+                {
+                    Debug.LogError($"VALIDATION FAILED: Signature card '{signatureCard.cardName}' does not share a tag with the Chosen Champion '{chosenChampion.cardName}'.");
+                    return false;
+                }
+            }
+        }
 
-        // Rule 103.3.a: Exactly 12 Rune cards
+        // --- Regole del Mazzo delle Rune ---
+
+        // Regola 103.3.a: Esattamente 12 carte Runa
         if (runeDeck.Count != 12)
         {
             Debug.LogError($"VALIDATION FAILED: Rune deck has {runeDeck.Count} cards, but exactly 12 are required.");
@@ -79,33 +98,37 @@ public class Deck : ScriptableObject
             return false;
         }
 
-        // --- DOMAIN IDENTITY RULE (CRUCIAL) ---
+        // --- REGOLA FONDAMENTALE: IDENTITÀ DEL DOMINIO ---
 
-        // Rule 103.1.b.2: All cards must adhere to the Legend's Domain Identity.
+        // Regola 103.1.b.2: Tutte le carte devono rispettare l'identità del dominio della Leggenda
         var legendDomains = new HashSet<string>(championLegend.domains);
         if (!legendDomains.Any())
         {
-            Debug.LogError("VALIDATION FAILED: The Champion Legend has no domains assigned, cannot check Domain Identity.");
-            return false;
+            // Se la leggenda non ha domini (es. una leggenda "incolore"), allora tutto è permesso.
+            // Se invece dovesse averli per forza, questo diventerebbe un errore.
+            Debug.LogWarning("VALIDATION NOTE: The Champion Legend has no domains, so any card is permitted.");
         }
-
-        foreach (var cardInDeck in mainDeck)
+        else
         {
-            // A card with no domains can be in any deck.
-            if (cardInDeck.domains == null || !cardInDeck.domains.Any())
+            foreach (var cardInDeck in mainDeck)
             {
-                continue;
-            }
+                // Una carta senza domini può essere inserita in qualsiasi mazzo.
+                if (cardInDeck.domains == null || !cardInDeck.domains.Any())
+                {
+                    continue;
+                }
 
-            // If a card has domains, all of its domains must be a subset of the legend's domains.
-            var cardDomains = new HashSet<string>(cardInDeck.domains);
-            if (!cardDomains.IsSubsetOf(legendDomains))
-            {
-                Debug.LogError($"VALIDATION FAILED: Card '{cardInDeck.cardName}' with domains [{string.Join(", ", cardInDeck.domains)}] is not allowed in a deck with Legend domains [{string.Join(", ", championLegend.domains)}].");
-                return false;
+                // Se una carta ha dei domini, TUTTI i suoi domini devono essere un sottoinsieme dei domini della leggenda.
+                var cardDomains = new HashSet<string>(cardInDeck.domains);
+                if (!cardDomains.IsSubsetOf(legendDomains))
+                {
+                    Debug.LogError($"VALIDATION FAILED: Card '{cardInDeck.cardName}' with domains [{string.Join(", ", cardInDeck.domains)}] is not allowed in a deck with Legend domains [{string.Join(", ", championLegend.domains)}].");
+                    return false;
+                }
             }
         }
 
+        // Se tutti i controlli sono passati, il mazzo è valido
         Debug.Log("VALIDATION PASSED: This deck is valid!");
         return true;
     }

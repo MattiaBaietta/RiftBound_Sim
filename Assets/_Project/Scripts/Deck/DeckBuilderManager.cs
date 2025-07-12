@@ -10,7 +10,6 @@ using UnityEditor;
 
 public class DeckbuilderManager : MonoBehaviour
 {
-    // A single instance for easy access from other scripts (Singleton)
     public static DeckbuilderManager instance;
 
     [Header("Deck Data")]
@@ -25,46 +24,49 @@ public class DeckbuilderManager : MonoBehaviour
     public List<Toggle> domainToggles;
     public TextMeshProUGUI deckCountText;
 
+    // Aggiungi questo campo per l'anteprima
+    [Header("UI Preview")]
+    public Image cardPreviewImage;
+
     [Header("Prefabs")]
     public GameObject cardListEntryPrefab;
 
     private List<Card> allCardsInGame;
+    private string selectedDomainFilter = "All";
 
     void Awake()
     {
-        // Setup for the Singleton pattern
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        if (instance == null) { instance = this; }
+        else { Destroy(gameObject); }
     }
 
     void Start()
     {
-        // Initial safety checks
-        if (currentDeck == null) { Debug.LogError("No 'Current Deck' assigned!"); return; }
+        // Nascondi l'anteprima all'inizio
+        if (cardPreviewImage != null)
+        {
+            cardPreviewImage.gameObject.SetActive(false);
+        }
+
+        if (currentDeck == null) { Debug.LogError("ERRORE: Nessun 'Current Deck' assegnato!"); return; }
 
         LoadAllCardAssets();
         deckNameInput.text = currentDeck.name;
 
-        // Add listeners to UI events
-        saveButton.onClick.AddListener(SaveDeck);
-        nameFilterInput.onValueChanged.AddListener(delegate { RefreshCollectionView(); });
+        if (saveButton != null) saveButton.onClick.AddListener(SaveDeck);
+        if (nameFilterInput != null) nameFilterInput.onValueChanged.AddListener((s) => RefreshCollectionView());
 
-        foreach (var toggle in domainToggles)
+        if (domainToggles != null)
         {
-            if (toggle != null)
+            foreach (var toggle in domainToggles)
             {
-                // CORRECTED: The listener now calls RefreshCollectionView on ANY change (checked or unchecked).
-                toggle.onValueChanged.AddListener(delegate { RefreshCollectionView(); });
+                if (toggle != null)
+                {
+                    toggle.onValueChanged.AddListener((isOn) => { if (isOn) UpdateSelectedDomainFilter(toggle); });
+                }
             }
         }
 
-        // Populate the UI on start
         RefreshCollectionView();
         RefreshCurrentDeckView();
     }
@@ -74,64 +76,67 @@ public class DeckbuilderManager : MonoBehaviour
         allCardsInGame = new List<Card>(Resources.LoadAll<Card>("ScriptableObjects/Cards"));
     }
 
-    /// <summary>
-    /// Updates the card collection view based on all active filters.
-    /// </summary>
+    private void UpdateSelectedDomainFilter(Toggle activeToggle)
+    {
+        if (activeToggle == null) return;
+        TextMeshProUGUI toggleLabel = activeToggle.GetComponentInChildren<TextMeshProUGUI>();
+        if (toggleLabel != null)
+        {
+            selectedDomainFilter = toggleLabel.text;
+        }
+        RefreshCollectionView();
+    }
+
     void RefreshCollectionView()
     {
-        // First, clear the existing list
         foreach (Transform child in cardCollectionContentArea) { Destroy(child.gameObject); }
 
-        // --- NEW FILTERING LOGIC ---
-
-        // 1. Get the name filter text
         string nameFilter = nameFilterInput.text.ToLower();
-
-        // 2. Build a list of all currently selected domains
-        List<string> selectedDomains = new List<string>();
-        foreach (var toggle in domainToggles)
-        {
-            if (toggle != null && toggle.isOn)
-            {
-                selectedDomains.Add(toggle.GetComponentInChildren<TextMeshProUGUI>().text);
-            }
-        }
-
-        // 3. Check if we should show all domains
-        // This happens if "All" is selected OR if no domains are selected.
-        bool filterAllDomains = selectedDomains.Contains("All") || selectedDomains.Count == 0;
-
-        // 4. Filter the master card list
         List<Card> filteredCards = allCardsInGame.Where(card =>
-        {
-            bool nameMatch = string.IsNullOrEmpty(nameFilter) || card.cardName.ToLower().Contains(nameFilter);
+            (string.IsNullOrEmpty(nameFilter) || card.cardName.ToLower().Contains(nameFilter)) &&
+            (selectedDomainFilter == "All" || card.domains.Contains(selectedDomainFilter))
+        ).ToList();
 
-            // The card passes if we are showing all domains, OR if any of the card's domains are in our list of selected domains.
-            bool domainMatch = filterAllDomains || card.domains.Any(domain => selectedDomains.Contains(domain));
-
-            return nameMatch && domainMatch;
-
-        }).ToList();
-
-        // 5. Populate the view with the filtered cards
         foreach (Card card in filteredCards.OrderBy(c => c.cardName))
         {
             GameObject entryGO = Instantiate(cardListEntryPrefab, cardCollectionContentArea);
             entryGO.GetComponent<CardListEntry>().Setup(card, AddCardToDeck);
         }
-
     }
 
-    // --- The rest of the functions remain unchanged ---
+
+
+    /// <summary>
+    /// Aggiorna la vista del mazzo corrente con un ordinamento personalizzato e robusto.
+    /// </summary>
+    /// <summary>
+    /// Aggiorna la vista del mazzo corrente con un ordinamento personalizzato e robusto.
+    /// </summary>
     void RefreshCurrentDeckView()
     {
-        // Pulisce la vista attuale
+        // Pulisce la vista attuale per evitare duplicati
         foreach (Transform child in currentDeckContentArea) { Destroy(child.gameObject); }
 
-        // Raggruppa le carte nel mazzo per mostrare il contatore
-        var groupedDeck = currentDeck.mainDeck.GroupBy(c => c);
+        if (currentDeck == null) return;
 
-        foreach (var group in groupedDeck.OrderBy(g => g.Key.cardName))
+        // --- NUOVA LOGICA DI ORDINAMENTO ROBUSTA ---
+
+        var sortedDeck = currentDeck.mainDeck
+            .OrderBy(card => {
+                // Assegna una priorità basandosi sul tipo della carta.
+                // Numeri più bassi vengono prima.
+                if (card.type == "LEGEND") return 0;   // Priorità massima per le Leggende
+                if (card.isChampion) return 1;          // Seconda priorità per i Campioni
+                return 2;                               // Priorità normale per tutte le altre
+            })
+            .ThenBy(card => card.cardName) // Ordina alfabeticamente le carte con la stessa priorità
+            .ToList();
+
+        // Raggruppa le carte per mostrare il contatore
+        var groupedDeck = sortedDeck.GroupBy(c => c);
+
+        // Popola la vista con la lista ordinata e raggruppata
+        foreach (var group in groupedDeck)
         {
             Card card = group.Key;
             int count = group.Count();
@@ -139,35 +144,40 @@ public class DeckbuilderManager : MonoBehaviour
             GameObject entryGO = Instantiate(cardListEntryPrefab, currentDeckContentArea);
             CardListEntry entry = entryGO.GetComponent<CardListEntry>();
 
-            // Dice allo script del prefab: "Quando clicchi su questa carta (che è nel mazzo),
-            // esegui la funzione RemoveCardFromDeck."
             entry.Setup(card, RemoveCardFromDeck);
-            entry.UpdateCount(count); // Mostra il contatore (es. "x2")
+            entry.UpdateCount(count);
         }
 
-        // Aggiorna il testo del contatore generale
-        if (deckCountText != null)
-            deckCountText.text = $"Carte: {currentDeck.mainDeck.Count}/40";
+        UpdateDeckCountText();
     }
-
 
     void UpdateDeckCountText()
     {
         if (deckCountText != null)
-            deckCountText.text = $"Cards: {currentDeck.mainDeck.Count}/40";
+            deckCountText.text = $"Carte: {currentDeck.mainDeck.Count}/40";
     }
 
     public void AddCardToDeck(Card cardToAdd)
     {
-        if (currentDeck == null) return;
+        if (currentDeck == null || cardToAdd == null) return;
 
-        // Controlla se si può aggiungere un'altra copia della carta
+        // --- NUOVO CONTROLLO PER LA LEGGENDA ---
+        // Controlla se la carta che stai aggiungendo è una Leggenda
+        if (cardToAdd.type == "LEGEND")
+        {
+            // Controlla se nel mazzo esiste già una carta di tipo Leggenda
+            if (currentDeck.mainDeck.Any(card => card.type == "LEGEND"))
+            {
+                Debug.LogWarning("Non puoi aggiungere una seconda Leggenda al mazzo!");
+                return; // Interrompe la funzione e non aggiunge la carta
+            }
+        }
+
+        // Controlla il limite di copie (la logica di prima rimane)
         if (currentDeck.mainDeck.Count(c => c.cardID == cardToAdd.cardID) < cardToAdd.maximumCopies)
         {
             currentDeck.mainDeck.Add(cardToAdd);
-            // Dopo aver aggiunto la carta, rinfresca la vista del mazzo
             RefreshCurrentDeckView();
-            Debug.Log($"Aggiunta carta: {cardToAdd.cardName}");
         }
         else
         {
@@ -177,11 +187,8 @@ public class DeckbuilderManager : MonoBehaviour
 
     public void RemoveCardFromDeck(Card cardToRemove)
     {
-        if (currentDeck == null) return;
-
         currentDeck.mainDeck.Remove(cardToRemove);
         RefreshCurrentDeckView();
-        Debug.Log($"Rimossa carta: {cardToRemove.cardName}");
     }
 
     public void SaveDeck()
@@ -193,7 +200,32 @@ public class DeckbuilderManager : MonoBehaviour
             EditorUtility.SetDirty(currentDeck);
             AssetDatabase.SaveAssets();
 #endif
-            Debug.Log($"Deck '{currentDeck.name}' saved successfully!");
+            Debug.Log($"Mazzo '{currentDeck.name}' salvato!");
+        }
+    }
+
+
+    /// <summary>
+    /// Mostra l'anteprima della carta specificata.
+    /// </summary>
+    public void ShowCardPreview(Card cardToShow)
+    {
+        if (cardPreviewImage != null && cardToShow != null)
+        {
+            // Usa l'immagine grande per l'anteprima
+            cardPreviewImage.sprite = cardToShow.cardArt;
+            cardPreviewImage.gameObject.SetActive(true);
+        }
+    }
+
+    /// <summary>
+    /// Nasconde l'area di anteprima.
+    /// </summary>
+    public void HideCardPreview()
+    {
+        if (cardPreviewImage != null)
+        {
+            cardPreviewImage.gameObject.SetActive(false);
         }
     }
 }
