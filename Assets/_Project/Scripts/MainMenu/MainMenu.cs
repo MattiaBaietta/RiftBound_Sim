@@ -1,27 +1,23 @@
 using UnityEngine;
-using UnityEngine.SceneManagement; // Fondamentale per cambiare scena!
+using UnityEngine.SceneManagement; 
 
 public class MainMenu : MonoBehaviour
 {
-    // Questa funzione verrà collegata al pulsante "Nuova Partita"
+    // New game method
     public void OnNewGameButton()
     {
         Debug.Log("Avvio di una nuova partita...");
-        // Carica la scena dove si svolge il gioco.
-        // Assicurati di avere una scena con questo nome!
+        //TODO: Aggiungere log firebase ed implementarlo
         SceneManager.LoadScene("GameplayScene");
     }
 
-    // Questa funzione verrà collegata al pulsante "Deckbuilder"
     public void OnDeckbuilderButton()
     {
         Debug.Log("Apertura del Deckbuilder...");
-        // Carica la scena per la costruzione dei mazzi.
-        // Assicurati di avere una scena con questo nome!
         SceneManager.LoadScene("DeckbuilderScene");
     }
 
-    // Funzione bonus per chiudere il gioco
+    // Close game method
     public void OnQuitButton()
     {
         Debug.Log("Uscita dal gioco...");
