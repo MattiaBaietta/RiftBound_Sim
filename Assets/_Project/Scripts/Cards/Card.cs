@@ -10,10 +10,10 @@ public class Card : ScriptableObject
     public string type;
     public string category;
 
-    [Tooltip("L'immagine principale della carta.")]
+    [Tooltip("Full card Image")]
     public Sprite cardArt;
 
-    [Tooltip("L'immagine thumbnail/icona della carta.")]
+    [Tooltip("Thumbnail card Image")]
     public Sprite cardArtThumbnail;
 
     [Header("Stats & Costs")]
